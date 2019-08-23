@@ -34,7 +34,6 @@ def find_supplier_col(head_list):
     for item in head_list:
         if item.value == '供应商名称':
             return item.column
-            break
 
 SUPPLIER_COLUMN = find_supplier_col(table_head_list)
 
@@ -69,7 +68,7 @@ def find_split_idx(suppliers):
         if supplier_name_temp != supplier_name:
             supplier_name_temp = supplier_name
             arr.append(i)
-        i += 1;
+        i += 1
     return arr
             
 split_idx = find_split_idx(supplier_sorted)
