@@ -109,8 +109,8 @@ all_data = split_data(supplier_sorted)
 # 4.创建文件夹并保存拆分的文件
 counter = 0
 for data in all_data:
-    data.insert(0, table_head_list.value)  # 插入表头
     try:
+        data.insert(0, table_head_list.value)  # 插入表头
         temp_wb = xw.Book()
         temp_wb.sheets['sheet1'].range('A1').value = data
         temp_wb.save(os.path.join(
@@ -119,9 +119,13 @@ for data in all_data:
         counter += 1
     except Exception as e:
         f = open(output_path + './log.txt', 'w')
-        f.write(str(e) + '拆分文件格式异常')
+        f.write(str(e) + '-格式异常，请检查相关单元格')
         f.close()
-        temp_wb.close()
+        if temp_wb:
+            temp_wb.close()
 
+# 退出文件
+if wb:
     wb.close()
+if app:
     app.quit()
